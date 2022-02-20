@@ -44,15 +44,7 @@ describe('single implementation tests', function () {
     expect(v2Version).to.equal("V2");
   })
 
-  it('initializes V2 name and symbol', async function() {
-    await this.tokenV2Instance.initialize(tokenName, tokenSymbol);
-
-    const v2Name = await this.tokenV2Instance.name();
-    expect(v2Name).to.equal(tokenName);
-    
-    const v2Symbol = await this.tokenV2Instance.symbol();
-    expect(v2Symbol).to.equal(tokenSymbol);
-
+  it('initializes V2 store', async function() {
     const v2Store = await this.tokenV2Instance.store();
     expect(v2Store).to.equal(0);
   });
