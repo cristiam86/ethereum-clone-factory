@@ -1,17 +1,23 @@
-// contract/TokenV2.sol
-
-// SPDX-License-Identifier: MIT
+// contract/TokenV1.sol
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
-import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
-import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 
-contract TokenV2 is Initializable, ERC20Upgradeable, UUPSUpgradeable, OwnableUpgradeable {
-    function version() public pure returns (string memory) {
-        return "V2";
-    } 
+contract TokenV2 is Initializable, ERC20Upgradeable {
+  uint256 public store;
 
-    function _authorizeUpgrade(address) internal override onlyOwner {}
+  function initialize(string calldata name, string calldata symbol) initializer public {
+    __ERC20_init(name, symbol);
+    _mint(msg.sender, 1000 * 10 ** decimals());
+    store = 0;
+  }
+
+  function version() public pure returns (string memory) {
+      return "V2";
+  }
+
+  function setStore(uint256 newValue) public {
+    store = newValue;
+  }
 }
