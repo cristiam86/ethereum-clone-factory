@@ -8,7 +8,6 @@ import "./TokenV1.sol";
 
 contract TokenFactory is Ownable {
     UpgradeableBeacon immutable beacon;
-    address public implementation;
 
     event TokenCreated (
       address indexed cloneAddress
